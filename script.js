@@ -25,3 +25,33 @@ function loadPage(page) {
     });
 }
 
+function loadAvatars() {
+    const avatarSelection = document.getElementById('avatarSelection');
+    avatarSelection.innerHTML = '';
+
+    const avatars = ["avatar1.png", "avatar2.png", "avatar3.png", "avatar4.png"];
+
+    avatars.forEach(filename => {
+        const img = document.createElement('img');
+        img.src = `avatars/${filename}`;
+        img.className = 'avatar';
+        img.onclick = () => selectAvatar(filename);
+        avatarSelection.appendChild(img);
+    });
+}
+
+let selectedAvatar = null;
+
+function selectAvatar(filename) {
+    selectedAvatar = filename;
+
+    // Vis hvilken avatar der er valgt
+    document.querySelectorAll('.avatar').forEach(img => {
+        img.classList.remove('selected');
+        if (img.src.includes(filename)) {
+            img.classList.add('selected');
+        }
+    });
+}
+
+
