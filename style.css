@@ -144,3 +144,10 @@ input, select {
     max-width: 300px;
     width: 90%;
 }
+
+#profileContent {
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
