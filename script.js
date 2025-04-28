@@ -126,3 +126,17 @@ function selectAvatar(imgElement, filename) {
     selectedAvatar = filename;
 }
 
+function loadPage(page) {
+    fetch(page)
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('content').innerHTML = html;
+            if (page === 'newuser.html') {
+                loadAvatars();
+            }
+        })
+        .catch(err => {
+            console.error('Error loading page:', err);
+        });
+}
+
