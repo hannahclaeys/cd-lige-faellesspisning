@@ -2,45 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CD-lige Kitchen - Welcome!</title>
+    <title>CD-lige Kitchen Dinners</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+        }
+        button {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 10px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #084298;
+        }
+        input, select {
+            padding: 10px;
+            margin: 8px 0;
+            width: 250px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 1rem;
         }
         .hidden {
             display: none;
         }
-        button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
+        #footer {
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: #6c757d;
         }
-        input, select {
-            padding: 8px;
-            margin: 5px;
-            width: 200px;
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to CD-lige Kitchen Dinners!</h1>
-    <p>Who are you?</p>
+    <h1 class="fade-in">Welcome to CD-lige Kitchen Dinners!</h1>
+    <p class="fade-in">Who are you?</p>
 
     <button onclick="showExistingUser()">Choose existing user</button>
     <button onclick="showNewUserForm()">I'm new! Create account</button>
 
-    <div id="existingUser" class="hidden">
+    <div id="existingUser" class="hidden fade-in">
         <h2>Select your name</h2>
-        <select id="userList">
-            <!-- Dynamisk liste, fyldes senere -->
-        </select>
+        <select id="userList"></select>
         <br>
         <button onclick="loginUser()">Continue</button>
     </div>
 
-    <div id="newUserForm" class="hidden">
+    <div id="newUserForm" class="hidden fade-in">
         <h2>Create your account</h2>
         <input type="text" id="newUserName" placeholder="Enter your name"><br>
         
@@ -59,6 +97,10 @@
         <br>
         
         <button onclick="registerNewUser()">Register</button>
+    </div>
+
+    <div id="footer">
+        Built with ❤️ by Hannah Claeys Fog
     </div>
 
     <script>
@@ -110,7 +152,6 @@
 
             let selectedDiets = Array.from(dietSelect.selectedOptions).map(option => option.value);
 
-            // If 'Other' is selected, add the custom input
             if (selectedDiets.includes('Other') && otherDietInput !== '') {
                 selectedDiets = selectedDiets.filter(d => d !== 'Other');
                 selectedDiets.push(otherDietInput);
