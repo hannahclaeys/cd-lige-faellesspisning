@@ -16,8 +16,8 @@ main#content {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex: 1;
     text-align: center;
+    margin-bottom: 20px; /* Lidt luft over footeren */
 }
 
 /* Footer */
