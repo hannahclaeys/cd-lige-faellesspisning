@@ -209,3 +209,22 @@ function loadProfile() {
     `;
 }
 
+function addPoints(amount) {
+    let activeUser = JSON.parse(localStorage.getItem('activeUser'));
+    if (!activeUser) return;
+
+    // Opdater aktive bruger
+    activeUser.points += amount;
+    localStorage.setItem('activeUser', JSON.stringify(activeUser));
+
+    // Opdater brugeren i users-listen
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    const userIndex = users.findIndex(user => user.name === activeUser.name);
+    if (userIndex !== -1) {
+        users[userIndex].points = activeUser.points;
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+
+    // Genindlæs profilen
+    loadProfile();
+}
