@@ -28,6 +28,15 @@ function loadPage(page) {
     });
 }
 
+// Disse funktioner sørger for at knapperne virker i welcome.html
+function showExistingUser() {
+    loadPage('existinguser.html');
+}
+
+function showNewUserForm() {
+    loadPage('newuser.html');
+}
+
 // Avatar håndtering
 function loadAvatars() {
     const avatarSelection = document.getElementById('avatarSelection');
