@@ -14,8 +14,14 @@ function loadPage(page) {
     })
     .then(html => {
         document.getElementById('content').innerHTML = html;
+
+        // Tilføj denne kontrol:
+        if (page === 'newuser.html') {
+            loadAvatars();
+        }
     })
     .catch(error => {
         document.getElementById('content').innerHTML = '<h2>Page not found :(</h2>';
     });
 }
+
