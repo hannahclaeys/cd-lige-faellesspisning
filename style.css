@@ -22,10 +22,11 @@ main#content {
 
 /* Footer */
 #footer {
-    margin-top: 40px;
     font-size: 0.8rem;
     color: #6c757d;
     text-align: center;
+    padding: 20px 0;
+    flex-shrink: 0;
 }
 
 /* Tekst-styling */
