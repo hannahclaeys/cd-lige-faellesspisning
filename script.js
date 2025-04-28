@@ -193,13 +193,12 @@ function loadProfile() {
     if (activeUser.dietary && activeUser.dietary.length > 0) {
         dietaryListHTML = `
             <h3>Dietary Restrictions:</h3>
-            <ul>
+            <ul style="list-style-type: none; padding: 0;">
                 ${activeUser.dietary.map(diet => `<li>${diet}</li>`).join('')}
             </ul>
         `;
     }
 
-    // I stedet for at overskrive hele div'en, laver vi et kort inde i profileContent:
     profileContent.innerHTML = `
         <div class="profile-card">
             <img src="avatars/${activeUser.avatar}" alt="Avatar" style="width:150px; height:auto;"><br><br>
@@ -209,3 +208,4 @@ function loadProfile() {
         </div>
     `;
 }
+
