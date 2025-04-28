@@ -129,6 +129,11 @@ input, select {
     border-color: #4f6ef7;
 }
 
+.avatar-grid img.selected {
+    border-color: #2b50d4;
+    box-shadow: 0 0 8px #2b50d4;
+}
+
 .profile-card {
     background-color: white;
     padding: 30px;
@@ -139,9 +144,3 @@ input, select {
     max-width: 300px;
     width: 90%;
 }
-
-.avatar-grid img.selected {
-    border-color: #2b50d4;
-    box-shadow: 0 0 8px #2b50d4;
-}
-
