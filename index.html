@@ -43,55 +43,58 @@
     <div id="newUserForm" class="hidden">
         <h2>Create your account</h2>
         <input type="text" id="newUserName" placeholder="Enter your name"><br>
-        <input type="text" id="dietaryRestrictions" placeholder="Dietary restrictions (optional)"><br>
+        <label for="dietSelect">Dietary restrictions (choose one or more):</label><br>
+<select id="dietSelect" multiple size="5" onchange="checkOtherOption()">
+  <option value="Vegetarian">Vegetarian</option>
+  <option value="Vegan">Vegan</option>
+  <option value="Gluten Free">Gluten Free</option>
+  <option value="Lactose Free">Lactose Free</option>
+  <option value="Other">Other</option>
+</select><br>
+
+<div id="otherDietDiv" class="hidden">
+  <input type="text" id="otherDiet" placeholder="Please specify">
+</div>
+<br>
         <button onclick="registerNewUser()">Register</button>
     </div>
 
     <script>
-        let users = JSON.parse(localStorage.getItem('users')) || [];
+        function checkOtherOption() {
+    const dietSelect = document.getElementById('dietSelect');
+    const otherDietDiv = document.getElementById('otherDietDiv');
+    let selectedOptions = Array.from(dietSelect.selectedOptions).map(option => option.value);
 
-        function showExistingUser() {
-            document.getElementById('existingUser').classList.remove('hidden');
-            document.getElementById('newUserForm').classList.add('hidden');
-            updateUserList();
-        }
+    if (selectedOptions.includes('Other')) {
+        otherDietDiv.classList.remove('hidden');
+    } else {
+        otherDietDiv.classList.add('hidden');
+    }
+}
 
-        function showNewUserForm() {
-            document.getElementById('newUserForm').classList.remove('hidden');
-            document.getElementById('existingUser').classList.add('hidden');
-        }
+function registerNewUser() {
+    const name = document.getElementById('newUserName').value;
+    const dietSelect = document.getElementById('dietSelect');
+    const otherDietInput = document.getElementById('otherDiet').value.trim();
 
-        function updateUserList() {
-            const userList = document.getElementById('userList');
-            userList.innerHTML = '';
-            users.forEach(user => {
-                const option = document.createElement('option');
-                option.value = user.name;
-                option.textContent = user.name;
-                userList.appendChild(option);
-            });
-        }
+    if (name.trim() === '') {
+        alert('Please enter your name!');
+        return;
+    }
 
-        function registerNewUser() {
-            const name = document.getElementById('newUserName').value;
-            const dietary = document.getElementById('dietaryRestrictions').value;
+    let selectedDiets = Array.from(dietSelect.selectedOptions).map(option => option.value);
 
-            if (name.trim() === '') {
-                alert('Please enter your name!');
-                return;
-            }
+    // If 'Other' is selected, add the custom input
+    if (selectedDiets.includes('Other') && otherDietInput !== '') {
+        selectedDiets = selectedDiets.filter(d => d !== 'Other');
+        selectedDiets.push(otherDietInput);
+    }
 
-            users.push({ name: name, dietary: dietary, points: 0 });
-            localStorage.setItem('users', JSON.stringify(users));
-            alert('User registered! Now select your name.');
-            showExistingUser();
-        }
-
-        function loginUser() {
-            const selectedUser = document.getElementById('userList').value;
-            alert('Hello ' + selectedUser + '! (Here we would continue to the dinner dashboard.)');
-            // Her ville vi senere vise point-tavlen, osv.
-        }
+    users.push({ name: name, dietary: selectedDiets, points: 0 });
+    localStorage.setItem('users', JSON.stringify(users));
+    alert('User registered! Now select your name.');
+    showExistingUser();
+}
     </script>
 </body>
 </html>
