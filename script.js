@@ -20,7 +20,7 @@ function loadPage(page) {
             loadAvatars();
         }
         if (page === 'existinguser.html') {
-            populateUserList();
+            loadUserList();
         }
     })
     .catch(error => {
@@ -95,7 +95,7 @@ function registerNewUser() {
 }
 
 // Fyld brugerlisten ved existinguser
-function populateUserList() {
+function loadUserList() {
     const userList = document.getElementById('userList');
     if (!userList) return;
 
