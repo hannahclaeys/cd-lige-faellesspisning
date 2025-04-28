@@ -103,3 +103,27 @@ function loginUser() {
     alert(`Welcome back, ${selectedUser}!`);
     // Her kan vi senere lave at man kommer videre til pointsystemet
 }
+
+let selectedAvatar = null; // Gemmer valgt avatar
+
+function loadAvatars() {
+    const avatarSelection = document.getElementById('avatarSelection');
+    const avatarFilenames = ["avatar1.png", "avatar2.png", "avatar3.png", "avatar4.png"];
+
+    avatarFilenames.forEach(filename => {
+        const img = document.createElement('img');
+        img.src = `avatars/${filename}`;
+        img.alt = filename;
+        img.onclick = () => selectAvatar(img, filename);
+        avatarSelection.appendChild(img);
+    });
+}
+
+function selectAvatar(imgElement, filename) {
+    // Fjern tidligere valgt
+    document.querySelectorAll('.avatar-grid img').forEach(img => img.classList.remove('selected'));
+    // Marker valgt
+    imgElement.classList.add('selected');
+    selectedAvatar = filename;
+}
+
