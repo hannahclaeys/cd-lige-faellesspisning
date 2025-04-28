@@ -1,19 +1,42 @@
+/* Basis opsætning */
 body {
     font-family: 'Inter', sans-serif;
     background-color: #f8f9fa;
     color: #212529;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
     margin: 0;
     padding: 20px;
 }
 
+/* Centrer alt i main */
+main#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    text-align: center;
+}
+
+/* Footer */
+#footer {
+    margin-top: 40px;
+    font-size: 0.8rem;
+    color: #6c757d;
+    text-align: center;
+}
+
+/* Tekst-styling */
 h1 {
     font-size: 2.5rem;
     margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
 }
 
 p {
@@ -21,22 +44,24 @@ p {
     font-size: 1.2rem;
 }
 
+/* Knapper */
 button {
-    background-color: #0d6efd;
+    background-color: #4f6ef7;
     color: white;
     border: none;
     padding: 12px 24px;
     margin: 10px;
     font-size: 1rem;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #084298;
+    background-color: #2b50d4;
 }
 
+/* Inputfelter og dropdowns */
 input, select {
     padding: 10px;
     margin: 8px 0;
@@ -46,16 +71,12 @@ input, select {
     font-size: 1rem;
 }
 
+/* Skjulte elementer */
 .hidden {
     display: none;
 }
 
-#footer {
-    margin-top: 40px;
-    font-size: 0.8rem;
-    color: #6c757d;
-}
-
+/* Fade animation */
 .fade-in {
     animation: fadeIn 0.5s ease-in;
 }
