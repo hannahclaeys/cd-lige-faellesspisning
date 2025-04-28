@@ -179,18 +179,30 @@ function checkOtherOption() {
 }
 
 function loadProfile() {
-    const profileContent = document.getElementById('profileContent');
-    if (!profileContent) return;
-
     const activeUser = JSON.parse(localStorage.getItem('activeUser'));
     if (!activeUser) {
-        profileContent.innerHTML = '<p>No active user found!</p>';
+        alert('No active user!');
+        loadPage('welcome.html');
         return;
     }
 
+    const profileContent = document.getElementById('profileContent');
+    if (!profileContent) return;
+
+    let dietaryListHTML = '';
+    if (activeUser.dietary && activeUser.dietary.length > 0) {
+        dietaryListHTML = `
+            <h3>Dietary Restrictions:</h3>
+            <ul>
+                ${activeUser.dietary.map(diet => `<li>${diet}</li>`).join('')}
+            </ul>
+        `;
+    }
+
     profileContent.innerHTML = `
-        <img src="avatars/${activeUser.avatar}" alt="Avatar" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 20px;"><br>
+        <img src="avatars/${activeUser.avatar}" alt="Avatar" style="width:150px; height:auto;"><br><br>
         <h2>${activeUser.name}</h2>
         <p>Points: ${activeUser.points}</p>
+        ${dietaryListHTML}
     `;
 }
