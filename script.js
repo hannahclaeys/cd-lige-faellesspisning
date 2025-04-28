@@ -174,3 +174,20 @@ function checkOtherOption() {
         otherDietDiv.classList.add('hidden');
     }
 }
+
+function loadProfile() {
+    const profileContent = document.getElementById('profileContent');
+    if (!profileContent) return;
+
+    const activeUser = JSON.parse(localStorage.getItem('activeUser'));
+    if (!activeUser) {
+        profileContent.innerHTML = '<p>No active user found!</p>';
+        return;
+    }
+
+    profileContent.innerHTML = `
+        <img src="avatars/${activeUser.avatar}" alt="Avatar" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 20px;"><br>
+        <h2>${activeUser.name}</h2>
+        <p>Points: ${activeUser.points}</p>
+    `;
+}
