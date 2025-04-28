@@ -205,10 +205,18 @@ function loadProfile() {
             <h2>${activeUser.name}</h2>
             <p>Points: ${activeUser.points}</p>
             ${dietaryListHTML}
+
+            <div id="pointActions" style="margin-top: 30px;">
+                <h2 style="font-size: 1.5rem; margin-bottom: 15px;">Earn Points</h2>
+                <button onclick="addPoints(1)">I joined (+1 point)</button><br><br>
+                <button onclick="addPoints(5)">I cooked (+5 points)</button><br><br>
+                <button onclick="addPoints(3)">I took dishes (+3 points)</button>
+            </div>
         </div>
     `;
-}
+} // <-- HER slutter loadProfile
 
+// Nu begynder addPoints
 function addPoints(amount) {
     let activeUser = JSON.parse(localStorage.getItem('activeUser'));
     if (!activeUser) return;
