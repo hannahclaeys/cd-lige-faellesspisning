@@ -22,6 +22,9 @@ function loadPage(page) {
         if (page === 'existinguser.html') {
             loadUserList();
         }
+        if (page === 'profile.html') {
+            loadProfile(); // <- Tilføj denne linje!
+        }
     })
     .catch(error => {
         document.getElementById('content').innerHTML = '<h2>Page not found :(</h2>';
