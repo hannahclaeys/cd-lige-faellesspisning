@@ -57,6 +57,10 @@ function registerNewUser() {
         alert('Please enter your name!');
         return;
     }
+    if (!selectedAvatar) {
+        alert('Please select an avatar!');
+        return;
+    }
 
     let selectedDiets = Array.from(dietSelect.selectedOptions).map(option => option.value);
 
@@ -66,7 +70,7 @@ function registerNewUser() {
     }
 
     const users = JSON.parse(localStorage.getItem('users')) || [];
-    users.push({ name: name, dietary: selectedDiets, points: 0 });
+    users.push({ name: name, dietary: selectedDiets, points: 0, avatar: selectedAvatar });
     localStorage.setItem('users', JSON.stringify(users));
 
     alert('User registered! Now select your name.');
