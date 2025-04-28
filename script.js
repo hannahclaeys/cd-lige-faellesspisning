@@ -130,8 +130,15 @@ function loginUser() {
         return;
     }
 
-    alert(`Welcome back, ${selectedName}!`);
-    // Senere kan du sende brugeren videre til dashboard osv.
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const activeUser = users.find(user => user.name === selectedName);
+
+    if (activeUser) {
+        localStorage.setItem('activeUser', JSON.stringify(activeUser));
+        loadPage('profile.html');  // <-- Vigtigt: vi sender brugeren til den nye profilside!
+    } else {
+        alert('Selected user not found!');
+    }
 }
 
 // Slet bruger funktion
