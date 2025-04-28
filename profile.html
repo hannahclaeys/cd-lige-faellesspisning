@@ -1,11 +1,21 @@
-<div class="fade-in" style="display: flex; justify-content: center; align-items: center; min-height: 80vh;">
-    <div id="profileContent" class="profile-card">
-        <!-- Brugerens info (avatar, navn, points, dietary) bliver sat ind her med loadProfile() -->
+<div class="fade-in"> 
+    <h1>Welcome to your profile!</h1>
+
+    <div style="display: flex; justify-content: center; align-items: flex-start; gap: 50px; margin-top: 30px;">
+        
+        <!-- Venstre: Profilkort -->
+        <div id="profileContent" class="profile-card">
+            <!-- Brugerens info bliver dynamisk fyldt ind -->
+        </div>
+
+        <!-- Højre: Podie -->
+        <div id="podium" style="flex-shrink: 0;">
+            <!-- Podie (kommer vi til om lidt) -->
+        </div>
+
     </div>
-</div>
 
-<br>
+    <br>
 
-<div style="text-align: center;">
     <button onclick="logout()">Logout</button>
 </div>
