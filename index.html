@@ -2,10 +2,96 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CD-lige Fællesspisning</title>
+    <title>CD-lige Kitchen - Welcome!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        input {
+            padding: 8px;
+            margin: 5px;
+            width: 200px;
+        }
+    </style>
 </head>
 <body>
     <h1>Welcome to CD-lige Kitchen Dinners!</h1>
-    <p>This site will show the current standings and next dinner date.</p>
+    <p>Who are you?</p>
+
+    <button onclick="showExistingUser()">Choose existing user</button>
+    <button onclick="showNewUserForm()">I'm new! Create account</button>
+
+    <div id="existingUser" class="hidden">
+        <h2>Select your name</h2>
+        <select id="userList">
+            <!-- Dynamisk liste, fyldes senere -->
+        </select>
+        <br>
+        <button onclick="loginUser()">Continue</button>
+    </div>
+
+    <div id="newUserForm" class="hidden">
+        <h2>Create your account</h2>
+        <input type="text" id="newUserName" placeholder="Enter your name"><br>
+        <input type="text" id="dietaryRestrictions" placeholder="Dietary restrictions (optional)"><br>
+        <button onclick="registerNewUser()">Register</button>
+    </div>
+
+    <script>
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+
+        function showExistingUser() {
+            document.getElementById('existingUser').classList.remove('hidden');
+            document.getElementById('newUserForm').classList.add('hidden');
+            updateUserList();
+        }
+
+        function showNewUserForm() {
+            document.getElementById('newUserForm').classList.remove('hidden');
+            document.getElementById('existingUser').classList.add('hidden');
+        }
+
+        function updateUserList() {
+            const userList = document.getElementById('userList');
+            userList.innerHTML = '';
+            users.forEach(user => {
+                const option = document.createElement('option');
+                option.value = user.name;
+                option.textContent = user.name;
+                userList.appendChild(option);
+            });
+        }
+
+        function registerNewUser() {
+            const name = document.getElementById('newUserName').value;
+            const dietary = document.getElementById('dietaryRestrictions').value;
+
+            if (name.trim() === '') {
+                alert('Please enter your name!');
+                return;
+            }
+
+            users.push({ name: name, dietary: dietary, points: 0 });
+            localStorage.setItem('users', JSON.stringify(users));
+            alert('User registered! Now select your name.');
+            showExistingUser();
+        }
+
+        function loginUser() {
+            const selectedUser = document.getElementById('userList').value;
+            alert('Hello ' + selectedUser + '! (Here we would continue to the dinner dashboard.)');
+            // Her ville vi senere vise point-tavlen, osv.
+        }
+    </script>
 </body>
 </html>
