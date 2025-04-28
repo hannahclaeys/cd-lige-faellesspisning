@@ -1,6 +1,6 @@
 // Når siden loader: start med at vise velkomstsiden
 document.addEventListener('DOMContentLoaded', () => {
-    loadTemplate('welcome');
+    loadPage('welcome.html');
 });
 
 // Funktion til at loade et template ind i #content
