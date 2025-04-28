@@ -149,7 +149,7 @@ function deleteUser() {
     localStorage.setItem('users', JSON.stringify(users));
 
     alert(`Deleted ${selectedName}!`);
-    populateUserList(); // Opdatér listen bagefter
+    loadUserList(); // Opdatér listen bagefter
 }
 
 // Vis/hide Other inputfeltet
