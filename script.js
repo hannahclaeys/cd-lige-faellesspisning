@@ -15,9 +15,12 @@ function loadPage(page) {
     .then(html => {
         document.getElementById('content').innerHTML = html;
 
-        // Hvis det er newuser siden, skal avatarer loades
+        // Ekstra funktioner baseret på siden
         if (page === 'newuser.html') {
             loadAvatars();
+        }
+        if (page === 'existinguser.html') {
+            populateUserList();
         }
     })
     .catch(error => {
@@ -25,7 +28,7 @@ function loadPage(page) {
     });
 }
 
-// Funktion til at loade avatars på ny bruger siden
+// Avatar håndtering
 function loadAvatars() {
     const avatarSelection = document.getElementById('avatarSelection');
     avatarSelection.innerHTML = '';
@@ -43,11 +46,9 @@ function loadAvatars() {
 
 let selectedAvatar = null;
 
-// Funktion til at vælge avatar
 function selectAvatar(filename) {
     selectedAvatar = filename;
 
-    // Highlight valgt avatar
     document.querySelectorAll('.avatar').forEach(img => {
         img.classList.remove('selected');
         if (img.src.includes(filename)) {
@@ -56,17 +57,7 @@ function selectAvatar(filename) {
     });
 }
 
-// Funktion til at vise eksisterende bruger-side
-function showExistingUser() {
-    loadPage('existinguser.html');
-}
-
-// Funktion til at vise ny bruger-side
-function showNewUserForm() {
-    loadPage('newuser.html');
-}
-
-// Funktion til at registrere en ny bruger
+// Registrering af ny bruger
 function registerNewUser() {
     const nameInput = document.getElementById('newUserName');
     const dietSelect = document.getElementById('dietSelect');
@@ -100,9 +91,59 @@ function registerNewUser() {
     localStorage.setItem('users', JSON.stringify(users));
 
     alert('User registered! Now select your name.');
-    showExistingUser();
+    loadPage('existinguser.html');
 }
 
+// Fyld brugerlisten ved existinguser
+function populateUserList() {
+    const userList = document.getElementById('userList');
+    if (!userList) return;
+
+    userList.innerHTML = '';
+
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    users.forEach(user => {
+        const option = document.createElement('option');
+        option.value = user.name;
+        option.textContent = user.name;
+        userList.appendChild(option);
+    });
+}
+
+// Login funktion
+function loginUser() {
+    const userList = document.getElementById('userList');
+    const selectedName = userList ? userList.value : null;
+
+    if (!selectedName) {
+        alert('Please select a user!');
+        return;
+    }
+
+    alert(`Welcome back, ${selectedName}!`);
+    // Senere kan du sende brugeren videre til dashboard osv.
+}
+
+// Slet bruger funktion
+function deleteUser() {
+    const userList = document.getElementById('userList');
+    const selectedName = userList ? userList.value : null;
+
+    if (!selectedName) {
+        alert('Please select a user to delete!');
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    users = users.filter(user => user.name !== selectedName);
+    localStorage.setItem('users', JSON.stringify(users));
+
+    alert(`Deleted ${selectedName}!`);
+    populateUserList(); // Opdatér listen bagefter
+}
+
+// Vis/hide Other inputfeltet
 function checkOtherOption() {
     const dietSelect = document.getElementById('dietSelect');
     const otherDietDiv = document.getElementById('otherDietDiv');
@@ -117,4 +158,3 @@ function checkOtherOption() {
         otherDietDiv.classList.add('hidden');
     }
 }
-
