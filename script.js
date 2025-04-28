@@ -49,14 +49,15 @@ function selectAvatar(filename) {
 
 // Funktion til at registrere en ny bruger
 function registerNewUser() {
-    const name = document.getElementById('newUserName').value.trim();
+    const name = document.getElementById('newUserName').value;
     const dietSelect = document.getElementById('dietSelect');
     const otherDietInput = document.getElementById('otherDiet').value.trim();
 
-    if (name === '') {
+    if (name.trim() === '') {
         alert('Please enter your name!');
         return;
     }
+
     if (!selectedAvatar) {
         alert('Please select an avatar!');
         return;
@@ -69,10 +70,8 @@ function registerNewUser() {
         selectedDiets.push(otherDietInput);
     }
 
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    users.push({ name: name, dietary: selectedDiets, points: 0, avatar: selectedAvatar });
+    users.push({ name: name, dietary: selectedDiets, avatar: selectedAvatar, points: 0 });
     localStorage.setItem('users', JSON.stringify(users));
-
     alert('User registered! Now select your name.');
     showExistingUser();
 }
