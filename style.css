@@ -129,6 +129,17 @@ input, select {
     border-color: #4f6ef7;
 }
 
+.profile-card {
+    background-color: white;
+    padding: 30px;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 300px;
+    width: 90%;
+}
+
 .avatar-grid img.selected {
     border-color: #2b50d4;
     box-shadow: 0 0 8px #2b50d4;
