@@ -15,7 +15,7 @@ function loadPage(page) {
     .then(html => {
         document.getElementById('content').innerHTML = html;
 
-        // Tilføj denne kontrol:
+        // Hvis det er newuser siden, skal avatarer loades
         if (page === 'newuser.html') {
             loadAvatars();
         }
@@ -25,6 +25,7 @@ function loadPage(page) {
     });
 }
 
+// Funktion til at loade avatars på ny bruger siden
 function loadAvatars() {
     const avatarSelection = document.getElementById('avatarSelection');
     avatarSelection.innerHTML = '';
@@ -42,10 +43,11 @@ function loadAvatars() {
 
 let selectedAvatar = null;
 
+// Funktion til at vælge avatar
 function selectAvatar(filename) {
     selectedAvatar = filename;
 
-    // Vis hvilken avatar der er valgt
+    // Highlight valgt avatar
     document.querySelectorAll('.avatar').forEach(img => {
         img.classList.remove('selected');
         if (img.src.includes(filename)) {
@@ -54,4 +56,49 @@ function selectAvatar(filename) {
     });
 }
 
+// Funktion til at vise eksisterende bruger-side
+function showExistingUser() {
+    loadPage('existinguser.html');
+}
 
+// Funktion til at vise ny bruger-side
+function showNewUserForm() {
+    loadPage('newuser.html');
+}
+
+// Funktion til at registrere en ny bruger
+function registerNewUser() {
+    const nameInput = document.getElementById('newUserName');
+    const dietSelect = document.getElementById('dietSelect');
+    const otherDietInput = document.getElementById('otherDiet');
+
+    const name = nameInput ? nameInput.value.trim() : '';
+    const otherDiet = otherDietInput ? otherDietInput.value.trim() : '';
+
+    if (name === '') {
+        alert('Please enter your name!');
+        return;
+    }
+
+    if (!selectedAvatar) {
+        alert('Please select an avatar!');
+        return;
+    }
+
+    let selectedDiets = [];
+    if (dietSelect) {
+        selectedDiets = Array.from(dietSelect.selectedOptions).map(option => option.value);
+
+        if (selectedDiets.includes('Other') && otherDiet !== '') {
+            selectedDiets = selectedDiets.filter(d => d !== 'Other');
+            selectedDiets.push(otherDiet);
+        }
+    }
+
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    users.push({ name: name, dietary: selectedDiets, avatar: selectedAvatar, points: 0 });
+    localStorage.setItem('users', JSON.stringify(users));
+
+    alert('User registered! Now select your name.');
+    showExistingUser();
+}
