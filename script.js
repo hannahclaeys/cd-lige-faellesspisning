@@ -34,6 +34,19 @@ function populateUserList() {
     });
 }
 
+let selectedAvatar = null;
+
+function selectAvatar(filename) {
+    selectedAvatar = filename;
+
+    // Highlight valgt avatar
+    const avatars = document.querySelectorAll('.avatar');
+    avatars.forEach(avatar => {
+        avatar.style.border = avatar.src.includes(filename) ? '3px solid #4f6ef7' : 'none';
+    });
+}
+
+
 // Funktion til at registrere en ny bruger
 function registerNewUser() {
     const name = document.getElementById('newUserName').value.trim();
