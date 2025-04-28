@@ -102,3 +102,19 @@ function registerNewUser() {
     alert('User registered! Now select your name.');
     showExistingUser();
 }
+
+function checkOtherOption() {
+    const dietSelect = document.getElementById('dietSelect');
+    const otherDietDiv = document.getElementById('otherDietDiv');
+
+    if (!dietSelect || !otherDietDiv) return;
+
+    const selectedOptions = Array.from(dietSelect.selectedOptions).map(option => option.value);
+
+    if (selectedOptions.includes('Other')) {
+        otherDietDiv.classList.remove('hidden');
+    } else {
+        otherDietDiv.classList.add('hidden');
+    }
+}
+
