@@ -199,10 +199,13 @@ function loadProfile() {
         `;
     }
 
+    // I stedet for at overskrive hele div'en, laver vi et kort inde i profileContent:
     profileContent.innerHTML = `
-        <img src="avatars/${activeUser.avatar}" alt="Avatar" style="width:150px; height:auto;"><br><br>
-        <h2>${activeUser.name}</h2>
-        <p>Points: ${activeUser.points}</p>
-        ${dietaryListHTML}
+        <div class="profile-card">
+            <img src="avatars/${activeUser.avatar}" alt="Avatar" style="width:150px; height:auto;"><br><br>
+            <h2>${activeUser.name}</h2>
+            <p>Points: ${activeUser.points}</p>
+            ${dietaryListHTML}
+        </div>
     `;
 }
