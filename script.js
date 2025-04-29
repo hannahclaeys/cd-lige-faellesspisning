@@ -1,6 +1,6 @@
 // Når siden loader: start med at vise velkomstsiden
 document.addEventListener('DOMContentLoaded', () => {
-    loadPage('dashboard.html');
+    loadPage('welcome.html');
 });
 
 // Funktion til at hente en hel HTML-side ind i #content
@@ -13,17 +13,23 @@ function loadPage(page) {
         return response.text();
     })
     .then(html => {
-        if (page === 'dashboard.html') {
-            // Når dashboard.html bliver indlæst, skal vi vise profile.html i venstre side
-            document.getElementById('leftSide').innerHTML = html;
-            loadProfile(); // Kalder loadProfile for at vise den aktive brugers profil
+        document.getElementById('content').innerHTML = html;
+
+        // Ekstra funktioner baseret på siden
+        if (page === 'newuser.html') {
+            loadAvatars();
+        }
+        if (page === 'existinguser.html') {
+            loadUserList();
+        }
+        if (page === 'profile.html') {
+            loadProfile(); // <- Tilføj denne linje!
         }
     })
     .catch(error => {
         document.getElementById('content').innerHTML = '<h2>Page not found :(</h2>';
     });
 }
-
 
 // Disse funktioner sørger for at knapperne virker i welcome.html
 function showExistingUser() {
