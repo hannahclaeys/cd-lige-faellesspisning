@@ -2,30 +2,117 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="style.css"> <!-- Dit stylesheet -->
+    <link rel="stylesheet" href="style.css"> <!-- Link til dit stylesheet -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4f6ef7;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        #dashboardContent {
+            display: flex;
+            padding: 20px;
+            justify-content: space-between;
+            margin: 0 20px;
+        }
+        #leftSide {
+            flex: 1;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #rightSide {
+            flex: 2;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        h2 {
+            color: #333;
+        }
+        .profile-card {
+            text-align: center;
+        }
+        .profile-card img {
+            width: 150px;
+            height: auto;
+            border-radius: 50%;
+        }
+        button {
+            background-color: #4f6ef7;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            font-size: 1rem;
+        }
+        button:hover {
+            background-color: #3a57c7;
+        }
+    </style>
 </head>
 <body>
     <!-- Faste elementer som header -->
-    <header style="background-color: #4f6ef7; color: white; padding: 20px; text-align: center;">
-        <h1>Welcome to your Dashboard!</h1>
+    <header>
+        <h1>Your Profile</h1>
     </header>
 
     <!-- Dashboard indhold -->
-    <div id="dashboardContent" style="display: flex; padding: 20px;">
+    <div id="dashboardContent">
         <!-- Venstre side til profil (henter profile.html her) -->
-        <div id="leftSide" style="flex: 1; padding: 20px;">
+        <div id="leftSide">
             <!-- Profilindholdet vil blive indlæst her -->
+            <div class="profile-card">
+                <!-- Din profil vises her -->
+                <img src="avatars/avatar1.png" alt="Avatar">
+                <h2>John Doe</h2>
+                <p>Points: 15</p>
+                <h3>Dietary Restrictions:</h3>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li>Vegetarian</li>
+                </ul>
+
+                <!-- Point actions -->
+                <div id="pointActions">
+                    <h3>Earn Points</h3>
+                    <button onclick="addPoints(1)">I joined (+1 point)</button>
+                    <button onclick="addPoints(3)">I took dishes (+3 points)</button>
+                    <button onclick="addPoints(5)">I cooked (+5 points)</button>
+                    <p onclick="removePoint()" style="color: grey; font-size: 0.8rem;">Remove 1 point</p>
+                </div>
+            </div>
         </div>
 
-        <!-- Højre side er tomt lige nu -->
-        <div id="rightSide" style="flex: 2; padding: 20px;">
-            <!-- Ingen ekstra funktioner endnu -->
+        <!-- Højre side til eventuelle andre funktioner -->
+        <div id="rightSide">
+            <!-- Ingen ekstra funktioner lige nu -->
         </div>
     </div>
 
-    <!-- Footer (kan tilpasses) -->
-    <footer style="background-color: #f1f1f1; text-align: center; padding: 10px;">
+    <footer>
         <p>&copy; 2025 CD-lige Kitchen Dinners</p>
     </footer>
 
