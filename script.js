@@ -211,7 +211,7 @@ function loadProfile() {
                 <button onclick="addPoints(1)" style="width: 250px;">I joined (+1 point)</button><br><br>
                 <button onclick="addPoints(3)" style="width: 250px;">I took dishes (+3 points)</button><br><br>
                 <button onclick="addPoints(5)" style="width: 250px;">I cooked (+5 points)</button>
-                <p onclick="removePoint()" style="color: grey; text-decoration: underline; cursor: pointer; margin-top: 15px;">Remove 1 point</p>
+                <p onclick="removePoint()" style="color: grey; text-decoration: underline; cursor: pointer; font-size: 0.8rem; margin-top: 15px;">Remove 1 point</p>
             </div>
         </div>
     `;
