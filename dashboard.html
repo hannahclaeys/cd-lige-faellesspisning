@@ -16,14 +16,12 @@
         
         <!-- Højre side: Forskellige widgets, banner osv. -->
         <div id="right-section" style="width: 35%; padding: 20px;">
-            <h2>Next Event</h2>
-            <!-- Placeholder for event info (vi kan fylde den ud senere) -->
-            <p>Next community dinner: Date, Time, etc.</p>
+            <!-- Banneret bliver indlæst her -->
         </div>
     </div>
 
     <script>
-        // Load profile.html ind i venstre sektion
+        // Funktion til at hente og vise profile.html
         function loadProfile() {
             fetch('profile.html')  // Hent profile.html filen
                 .then(response => response.text())
@@ -35,8 +33,22 @@
                 });
         }
 
-        // Kald loadProfile funktionen når dashboardet er klar
+        // Funktion til at hente og vise banner.html
+        function loadBanner() {
+            fetch('banner.html')  // Hent banner.html filen
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('right-section').innerHTML = html;
+                })
+                .catch(error => {
+                    console.error("Error loading banner:", error);
+                });
+        }
+
+        // Kald funktionerne, når dashboardet er klar
         loadProfile();
+        loadBanner();
     </script>
+
 </body>
 </html>
