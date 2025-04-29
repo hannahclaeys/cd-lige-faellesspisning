@@ -13,7 +13,7 @@ function loadPage(page) {
         return response.text();
     })
     .then(html => {
-        document.body.innerHTML = html;
+        document.getElementById('content').innerHTML = html;
 
         // Ekstra funktioner baseret på siden
         if (page === 'newuser.html') {
@@ -23,16 +23,14 @@ function loadPage(page) {
             loadUserList();
         }
         if (page === 'profile.html') {
-            loadProfile(); // <- Sørg for at loadProfile bliver kaldt her
-        }
-        if (page === 'dashboard.html') {
-            loadProfile(); // <-- Vigtigt at loadProfile bliver kaldt her for at vise profilen korrekt
+            loadProfile(); // <- Tilføj denne linje!
         }
     })
     .catch(error => {
         document.getElementById('content').innerHTML = '<h2>Page not found :(</h2>';
     });
 }
+
 // Disse funktioner sørger for at knapperne virker i welcome.html
 function showExistingUser() {
     loadPage('existinguser.html');
@@ -140,7 +138,7 @@ function loginUser() {
 
     if (activeUser) {
         localStorage.setItem('activeUser', JSON.stringify(activeUser));
-        loadPage('dashboard.html');  // <-- Vigtigt: vi sender brugeren til den nye profilside!
+        loadPage('profile.html');  // <-- Vigtigt: vi sender brugeren til den nye profilside!
     } else {
         alert('Selected user not found!');
     }
@@ -191,8 +189,7 @@ function loadProfile() {
     const profileContent = document.getElementById('profileContent');
     if (!profileContent) return;
 
-    // Håndtering af dietary restrictions - hvis ingen findes, vis "No restrictions"
-    let dietaryListHTML = '<h3>Dietary Restrictions:</h3><p>No restrictions</p>';
+    let dietaryListHTML = '';
     if (activeUser.dietary && activeUser.dietary.length > 0) {
         dietaryListHTML = `
             <h3>Dietary Restrictions:</h3>
@@ -202,10 +199,9 @@ function loadProfile() {
         `;
     }
 
-    // Dynamisk opdatering af profilindholdet
     profileContent.innerHTML = `
         <div class="profile-card">
-            <img src="avatars/${activeUser.avatar || 'default-avatar.png'}" alt="Avatar" style="width:150px; height:auto; border-radius: 50%;"><br><br>
+            <img src="avatars/${activeUser.avatar}" alt="Avatar" style="width:150px; height:auto;"><br><br>
             <h2>${activeUser.name}</h2>
             <p>Points: ${activeUser.points}</p>
             ${dietaryListHTML}
@@ -219,8 +215,7 @@ function loadProfile() {
             </div>
         </div>
     `;
-}
-
+} // <-- HER slutter loadProfile
 
 // Nu begynder addPoints
 function addPoints(amount) {
