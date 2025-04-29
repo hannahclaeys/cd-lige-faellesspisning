@@ -1,4 +1,4 @@
-<div class="fade-in"> 
+<div class="fade-in">
     <h1>Welcome to your profile!</h1>
 
     <div style="display: flex; justify-content: center; align-items: flex-start; gap: 50px; margin-top: 30px;">
@@ -6,6 +6,14 @@
         <!-- Venstre: Profilkort -->
         <div id="profileContent" class="profile-card">
             <!-- Brugerens info bliver dynamisk fyldt ind -->
+            <img src="avatars/avatar1.png" alt="Avatar" style="width: 150px; height: 150px; border-radius: 50%;">
+            <h2 id="userName">Hannah</h2>
+            <p>Points: <span id="userPoints">3</span></p>
+            
+            <h3>Dietary Restrictions:</h3>
+            <ul style="list-style-type: none; padding: 0;">
+                <li id="dietaryRestrictions">No Fish</li>
+            </ul>
 
             <div id="pointActions" style="margin-top: 30px;">
                 <h2 style="font-size: 1.5rem; margin-bottom: 15px;">Earn Points</h2>
@@ -15,9 +23,9 @@
             </div>
         </div>
 
-        <!-- Højre: Podie -->
+        <!-- Højre: Podie (plads til fremtidige elementer) -->
         <div id="podium" style="flex-shrink: 0;">
-            <!-- Podie (kommer vi til om lidt) -->
+            <!-- Podie kommer senere -->
         </div>
 
     </div>
