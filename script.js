@@ -23,13 +23,18 @@ function loadPage(page) {
             loadUserList();
         }
         if (page === 'profile.html') {
-            loadProfile(); // <- Tilføj denne linje!
+            loadProfile(); // <- Denne linje sørger for at indlæse brugerprofilen
+        }
+        if (page === 'dashboard.html') {
+            // Dette kan bruges til at hente yderligere dynamisk indhold til dashboardet, hvis nødvendigt
+            loadDashboard(); // <-- Vi kan tilføje en loadDashboard funktion senere, hvis du ønsker det
         }
     })
     .catch(error => {
         document.getElementById('content').innerHTML = '<h2>Page not found :(</h2>';
     });
 }
+
 
 // Disse funktioner sørger for at knapperne virker i welcome.html
 function showExistingUser() {
@@ -138,7 +143,7 @@ function loginUser() {
 
     if (activeUser) {
         localStorage.setItem('activeUser', JSON.stringify(activeUser));
-        loadPage('profile.html');  // <-- Vigtigt: vi sender brugeren til den nye profilside!
+        loadPage('dashboard.html');  // <-- Ændret: vi sender brugeren til dashboardet!
     } else {
         alert('Selected user not found!');
     }
@@ -254,3 +259,16 @@ function removePoint() {
 
     loadProfile();
 }
+
+// Denne funktion indlæser profilindholdet dynamisk i venstre sektion af dashboardet
+function loadDashboard() {
+    fetch('profile.html')
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById('leftSide').innerHTML = html;
+    })
+    .catch(error => {
+        console.error('Error loading profile:', error);
+    });
+}
+
