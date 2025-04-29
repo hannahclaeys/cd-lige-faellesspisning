@@ -3,35 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> <!-- Dit stylesheet -->
 </head>
 <body>
-    <!-- Faste elementer som header (du kan senere tilføje et banner her) -->
+    <!-- Faste elementer som header -->
     <header style="background-color: #4f6ef7; color: white; padding: 20px; text-align: center;">
         <h1>Welcome to your Dashboard!</h1>
     </header>
 
     <!-- Dashboard indhold -->
     <div id="dashboardContent" style="display: flex; padding: 20px;">
-
         <!-- Venstre side til profil (henter profile.html her) -->
         <div id="leftSide" style="flex: 1; padding: 20px;">
-            <!-- Her vil profilens indhold blive indlæst -->
+            <!-- Profilindholdet vil blive indlæst her -->
         </div>
 
-        <!-- Højre side til eventuelle andre elementer (kan fyldes ud senere) -->
+        <!-- Højre side til yderligere dashboard-sektioner -->
         <div id="rightSide" style="flex: 2; padding: 20px;">
-            <h2>Other Information</h2>
-            <p>Her kan du tilføje andre dashboard-sektioner senere.</p>
+            <h2>Upcoming Dinner</h2>
+            <p>Date: Thursday, XX May at 18:00</p>
+            <button onclick="registerForDinner()">Tilmeld dig</button>
+            <button onclick="viewDinnerDetails()">Se yderligere detaljer</button>
+
+            <h2>Leaderboard</h2>
+            <p>1st: John Doe - 100 points</p>
+            <p>2nd: Jane Smith - 90 points</p>
+            <p>3rd: Alex Brown - 80 points</p>
         </div>
     </div>
 
+    <!-- Footer (kan tilpasses) -->
     <footer style="background-color: #f1f1f1; text-align: center; padding: 10px;">
         <p>&copy; 2025 CD-lige Kitchen Dinners</p>
     </footer>
 
-    <!-- Link til JavaScript-fil -->
-    <script src="script.js"></script>
+    <script src="script.js"></script> <!-- Link til dit script -->
 </body>
 </html>
-
