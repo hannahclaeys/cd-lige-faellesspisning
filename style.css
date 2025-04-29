@@ -1,53 +1,51 @@
-/* Ensretter stilarter for hele siden */
+/* Basis opsætning */
 body {
     font-family: 'Inter', sans-serif;
     background-color: #f8f9fa;
     color: #212529;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     margin: 0;
     padding: 20px;
 }
 
-/* Dashboard-specifik styling */
-#dashboardContent {
+/* Centrer alt i main */
+main#content {
     display: flex;
-    padding: 20px;
-    justify-content: space-between;
-    margin: 0 20px;
-}
-
-#leftSide {
-    flex: 1;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 350px;
-    /* Tilføjet en max-width for at undgå overlap */
-}
-
-#rightSide {
-    flex: 2;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    /* Vi kan tilføje mere indhold her senere */
-}
-
-/* Specifik profilkort styling for dashboardet */
-.profile-card {
-    background-color: white;
-    padding: 30px;
-    border: 2px solid #ccc;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    max-width: 300px;
-    width: 90%;
-    margin: 0 auto;
+    margin-bottom: 20px; /* Lidt luft over footeren */
 }
 
-/* Styling af knapper i dashboardet */
+/* Footer */
+#footer {
+    font-size: 0.8rem;
+    color: #6c757d;
+    text-align: center;
+    padding: 20px 0;
+    flex-shrink: 0;
+}
+
+/* Tekst-styling */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+}
+
+/* Knapper */
 button {
     background-color: #4f6ef7;
     color: white;
@@ -64,19 +62,91 @@ button:hover {
     background-color: #2b50d4;
 }
 
-/* Profilbilleder */
-.profile-card img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-bottom: 20px;
+/* Inputfelter og dropdowns */
+input, select {
+    padding: 10px;
+    margin: 8px 0;
+    width: 250px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1rem;
 }
 
-/* Ændring af footer for at gøre den diskret */
-footer {
-    font-size: 0.8rem;
-    color: #6c757d;
+/* Skjulte elementer */
+.hidden {
+    display: none;
+}
+
+/* Fade animation */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+#avatarSelection {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.avatar:hover {
+    transform: scale(1.1);
+}
+
+.avatar-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.avatar-grid img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.avatar-grid img:hover {
+    transform: scale(1.1);
+    border-color: #4f6ef7;
+}
+
+.avatar-grid img.selected {
+    border-color: #2b50d4;
+    box-shadow: 0 0 8px #2b50d4;
+}
+
+.profile-card {
+    background-color: white;
+    padding: 30px;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: center;
-    padding: 20px 0;
-    flex-shrink: 0;
+    max-width: 300px;
+    width: 90%;
+}
+
+#profileContent {
+    background: none;
+    border: none;
+    box-shadow: none;
 }
