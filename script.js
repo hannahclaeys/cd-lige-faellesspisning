@@ -189,7 +189,8 @@ function loadProfile() {
     const profileContent = document.getElementById('profileContent');
     if (!profileContent) return;
 
-    let dietaryListHTML = '';
+    // Håndtering af dietary restrictions - hvis ingen findes, vis "No restrictions"
+    let dietaryListHTML = '<h3>Dietary Restrictions:</h3><p>No restrictions</p>';
     if (activeUser.dietary && activeUser.dietary.length > 0) {
         dietaryListHTML = `
             <h3>Dietary Restrictions:</h3>
@@ -199,9 +200,10 @@ function loadProfile() {
         `;
     }
 
+    // Dynamisk opdatering af profilindholdet
     profileContent.innerHTML = `
         <div class="profile-card">
-            <img src="avatars/${activeUser.avatar}" alt="Avatar" style="width:150px; height:auto;"><br><br>
+            <img src="avatars/${activeUser.avatar || 'default-avatar.png'}" alt="Avatar" style="width:150px; height:auto; border-radius: 50%;"><br><br>
             <h2>${activeUser.name}</h2>
             <p>Points: ${activeUser.points}</p>
             ${dietaryListHTML}
@@ -215,7 +217,8 @@ function loadProfile() {
             </div>
         </div>
     `;
-} // <-- HER slutter loadProfile
+}
+
 
 // Nu begynder addPoints
 function addPoints(amount) {
