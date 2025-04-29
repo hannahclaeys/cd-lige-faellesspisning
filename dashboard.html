@@ -4,24 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> <!-- Hvis du bruger samme stylesheet -->
 </head>
 <body>
-    <header>
-        <h1>Your Profile</h1>
-    </header>
 
-    <!-- Dashboard indhold -->
-    <div id="dashboardContent">
-        <div id="leftSide">
-            <!-- Profilindholdet vil blive indlæst her -->
-            <div id="profileContent"></div> <!-- Dette er sektionen, hvor profilen vil blive indlæst -->
+    <div id="dashboard" style="display: flex; justify-content: space-between; padding: 20px;">
+        <!-- Venstre side: Profilkort -->
+        <div id="profile-section" style="width: 60%; padding: 20px;">
+            <!-- Denne sektion vil blive fyldt dynamisk med profile.html -->
         </div>
-        <div id="rightSide">
-            <!-- Højre sektion (tom for nu) -->
+        
+        <!-- Højre side: Forskellige widgets, banner osv. -->
+        <div id="right-section" style="width: 35%; padding: 20px;">
+            <h2>Next Event</h2>
+            <!-- Placeholder for event info (vi kan fylde den ud senere) -->
+            <p>Next community dinner: Date, Time, etc.</p>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Load profile.html ind i venstre sektion
+        function loadProfile() {
+            fetch('profile.html')  // Hent profile.html filen
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('profile-section').innerHTML = html;
+                })
+                .catch(error => {
+                    console.error("Error loading profile:", error);
+                });
+        }
+
+        // Kald loadProfile funktionen når dashboardet er klar
+        loadProfile();
+    </script>
 </body>
 </html>
