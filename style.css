@@ -150,3 +150,31 @@ input, select {
     border: none;
     box-shadow: none;
 }
+
+#dashboard {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#profile-section {
+    width: 60%;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#right-section {
+    width: 35%;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
