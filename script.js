@@ -237,3 +237,20 @@ function addPoints(amount) {
     // Genindlæs profilen
     loadProfile();
 }
+
+function removePoint() {
+    let activeUser = JSON.parse(localStorage.getItem('activeUser'));
+    if (!activeUser || activeUser.points <= 0) return;
+
+    activeUser.points -= 1;
+    localStorage.setItem('activeUser', JSON.stringify(activeUser));
+
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    const index = users.findIndex(user => user.name === activeUser.name);
+    if (index !== -1) {
+        users[index].points = activeUser.points;
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+
+    loadProfile();
+}
