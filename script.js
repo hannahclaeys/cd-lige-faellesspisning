@@ -138,7 +138,7 @@ function loginUser() {
 
     if (activeUser) {
         localStorage.setItem('activeUser', JSON.stringify(activeUser));
-        loadPage('profile.html');  // <-- Vigtigt: vi sender brugeren til den nye profilside!
+        loadPage('dashboard.html');  // <-- Vigtigt: vi sender brugeren til den nye profilside!
     } else {
         alert('Selected user not found!');
     }
