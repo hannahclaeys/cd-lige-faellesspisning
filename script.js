@@ -208,9 +208,9 @@ function loadProfile() {
 
             <div id="pointActions" style="margin-top: 30px;">
                 <h2 style="font-size: 1.5rem; margin-bottom: 15px;">Earn Points</h2>
-                <button onclick="addPoints(1)">I joined (+1 point)</button><br><br>
-                <button onclick="addPoints(3)">I took dishes (+3 points)</button><br><br>
-                <button onclick="addPoints(5)">I cooked (+5 points)</button>
+                <button onclick="addPoints(1)" style="width: 250px;">I joined (+1 point)</button><br><br>
+                <button onclick="addPoints(3)" style="width: 250px;">I took dishes (+3 points)</button><br><br>
+                <button onclick="addPoints(5)" style="width: 250px;">I cooked (+5 points)</button>
             </div>
         </div>
     `;
