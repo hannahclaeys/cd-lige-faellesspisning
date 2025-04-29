@@ -254,3 +254,12 @@ function removePoint() {
 
     loadProfile();
 }
+
+// Funktioner til knapperne i banner.html
+function bookEvent() {
+    alert('Funktion til at booke fællesspisning kommer snart!');
+}
+
+function viewDetails() {
+    alert('Funktion til at se detaljer kommer snart!');
+}
