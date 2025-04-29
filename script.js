@@ -25,11 +25,16 @@ function loadPage(page) {
         if (page === 'profile.html') {
             loadProfile(); // <- Tilføj denne linje!
         }
+        if (page === 'dashboard.html') {
+            loadProfile();  // Tilføj funktion til at hente profil
+            loadBanner();   // Tilføj funktion til at hente banner
+        }
     })
     .catch(error => {
         document.getElementById('content').innerHTML = '<h2>Page not found :(</h2>';
     });
 }
+
 
 // Disse funktioner sørger for at knapperne virker i welcome.html
 function showExistingUser() {
