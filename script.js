@@ -13,7 +13,7 @@ function loadPage(page) {
         return response.text();
     })
     .then(html => {
-        document.getElementById('content').innerHTML = html;
+        document.body.innerHTML = html;
 
         // Ekstra funktioner baseret på siden
         if (page === 'newuser.html') {
@@ -23,14 +23,16 @@ function loadPage(page) {
             loadUserList();
         }
         if (page === 'profile.html') {
-            loadProfile(); // <- Tilføj denne linje!
+            loadProfile(); // <- Sørg for at loadProfile bliver kaldt her
+        }
+        if (page === 'dashboard.html') {
+            loadProfile(); // <-- Vigtigt at loadProfile bliver kaldt her for at vise profilen korrekt
         }
     })
     .catch(error => {
         document.getElementById('content').innerHTML = '<h2>Page not found :(</h2>';
     });
 }
-
 // Disse funktioner sørger for at knapperne virker i welcome.html
 function showExistingUser() {
     loadPage('existinguser.html');
